@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<title>Eidolon - Metaverse</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="A metaverse.">
+<meta name="author" content="phuein">
+
+<link rel="icon" type="image/x-icon" href="media/favicon.ico" />
+
+<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<link data-name="vs/editor/editor.main" rel="stylesheet" href="scripts/monaco/min/vs/editor/editor.main.css">
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/interactjs@1.3.4/dist/interact.min.js"></script>
+
+<!-- Physics. -->
+<script src="https://cdn.babylonjs.com/cannon.js"></script>
+
+<!-- Link to the last version of BabylonJS -->
+<script src="https://preview.babylonjs.com/babylon.max.js"></script>
+<!-- Link to the last version of BabylonJS loaders to enable loading filetypes such as .gltf and .obj -->
+<script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.js"></script>
+<!-- Link to the last version of BabylonJS GUI. -->
+<script src="https://preview.babylonjs.com/gui/babylon.gui.js"></script>
+<!-- Link to pep.js to ensure pointer events work consistently in all browsers -->
+<script src="https://code.jquery.com/pep/0.4.1/pep.js"></script>
+
+</head>
+<body class="resize-container">
+<canvas id="EidolonCanvas"></canvas>
+
+<!-- Containers for Chat and Scripts. -->
+<!-- Resize, hide, focus. -->
+<div id="left" class="resize-left"></div>
+<div id="right" class="resize-right"></div>
+
+<div id="chat">
+  <div class="container">
+    <div class="col">
+      <div class="row">
+        <div class="col-11">What a thing!</div>
+      </div>
+      <div class="row">
+        <div class="col-11 offset-1 myMessage">I know.</div>
+      </div>
+      <div class="row">
+        <div class="col-11">Wow.</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <form action="">
+      <textarea rows="1" placeholder="Chat with others..."></textarea>
+      <button type="submit" class="btn-light">Send</button>
+    </form>
+  </div>
+</div>
+
+<div id="scripts">
+  <div class="script"></div>
+  <div id="files" class="resize-top">
+    <div class="list-group list-group-root well">
+
+      <a href="#item-1" class="list-group-item" data-toggle="collapse">
+        <i class="glyphicon glyphicon-chevron-right"></i>Item 1
+      </a>
+      <div class="list-group collapse" id="item-1">
+
+        <a href="#item-1-1" class="list-group-item" data-toggle="collapse">
+          <i class="glyphicon glyphicon-chevron-right"></i>Item 1.1
+        </a>
+        <div class="list-group collapse" id="item-1-1">
+          <a href="#" class="list-group-item">Item 1.1.1</a>
+          <a href="#" class="list-group-item">Item 1.1.2</a>
+          <a href="#" class="list-group-item">Item 1.1.3</a>
+        </div>
+
+        <a href="#item-1-2" class="list-group-item" data-toggle="collapse">
+          <i class="glyphicon glyphicon-chevron-right"></i>Item 1.2
+        </a>
+        <div class="list-group collapse" id="item-1-2">
+          <a href="#" class="list-group-item">Item 1.2.1</a>
+          <a href="#" class="list-group-item">Item 1.2.2</a>
+          <a href="#" class="list-group-item">Item 1.2.3</a>
+        </div>
+
+        <a href="#item-1-3" class="list-group-item" data-toggle="collapse">
+          <i class="glyphicon glyphicon-chevron-right"></i>Item 1.3
+        </a>
+        <div class="list-group collapse" id="item-1-3">
+          <a href="#" class="list-group-item">Item 1.3.1</a>
+          <a href="#" class="list-group-item">Item 1.3.2</a>
+          <a href="#" class="list-group-item">Item 1.3.3</a>
+        </div>
+
+      </div>
+
+      <a href="#item-2" class="list-group-item" data-toggle="collapse">
+        <i class="glyphicon glyphicon-chevron-right"></i>Item 2
+      </a>
+      <div class="list-group collapse" id="item-2">
+
+        <a href="#item-2-1" class="list-group-item" data-toggle="collapse">
+          <i class="glyphicon glyphicon-chevron-right"></i>Item 2.1
+        </a>
+        <div class="list-group collapse" id="item-2-1">
+          <a href="#" class="list-group-item">Item 2.1.1</a>
+          <a href="#" class="list-group-item">Item 2.1.2</a>
+          <a href="#" class="list-group-item">Item 2.1.3</a>
+        </div>
+
+        <a href="#item-2-2" class="list-group-item" data-toggle="collapse">
+          <i class="glyphicon glyphicon-chevron-right"></i>Item 2.2
+        </a>
+        <div class="list-group collapse" id="item-2-2">
+          <a href="#" class="list-group-item">Item 2.2.1</a>
+          <a href="#" class="list-group-item">Item 2.2.2</a>
+          <a href="#" class="list-group-item">Item 2.2.3</a>
+        </div>
+
+        <a href="#item-2-3" class="list-group-item" data-toggle="collapse">
+          <i class="glyphicon glyphicon-chevron-right"></i>Item 2.3
+        </a>
+        <div class="list-group collapse" id="item-2-3">
+          <a href="#" class="list-group-item">Item 2.3.1</a>
+          <a href="#" class="list-group-item">Item 2.3.2</a>
+          <a href="#" class="list-group-item">Item 2.3.3</a>
+        </div>
+
+      </div>
+
+
+      <a href="#item-3" class="list-group-item" data-toggle="collapse">
+        <i class="glyphicon glyphicon-chevron-right"></i>Item 3
+      </a>
+      <div class="list-group collapse" id="item-3">
+
+        <a href="#item-3-1" class="list-group-item" data-toggle="collapse">
+          <i class="glyphicon glyphicon-chevron-right"></i>Item 3.1
+        </a>
+        <div class="list-group collapse" id="item-3-1">
+          <a href="#" class="list-group-item">Item 3.1.1</a>
+          <a href="#" class="list-group-item">Item 3.1.2</a>
+          <a href="#" class="list-group-item">Item 3.1.3</a>
+        </div>
+
+        <a href="#item-3-2" class="list-group-item" data-toggle="collapse">
+          <i class="glyphicon glyphicon-chevron-right"></i>Item 3.2
+        </a>
+        <div class="list-group collapse" id="item-3-2">
+          <a href="#" class="list-group-item">Item 3.2.1</a>
+          <a href="#" class="list-group-item">Item 3.2.2</a>
+          <a href="#" class="list-group-item">Item 3.2.3</a>
+        </div>
+
+        <a href="#item-3-3" class="list-group-item" data-toggle="collapse">
+          <i class="glyphicon glyphicon-chevron-right"></i>Item 3.3
+        </a>
+        <div class="list-group collapse" id="item-3-3">
+          <a href="#" class="list-group-item">Item 3.3.1</a>
+          <a href="#" class="list-group-item">Item 3.3.2</a>
+          <a href="#" class="list-group-item">Item 3.3.3</a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- <div id="list-tab" class="list-group list-group-flush" role="tablist">
+      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-toggle="list" role="tab">
+          <span class="fileName">Sphere1</span>
+          <span class="badge badge-primary badge-pill">0</span>
+      </a>
+      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-toggle="list" role="tab">
+          <span class="fileName">
+            <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-toggle="list" role="tab">
+            Folder
+
+            </a>
+          </span>
+          <span class="badge badge-primary badge-pill">1</span>
+      </a>
+      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center active" data-toggle="list" role="tab">
+        <span class="fileName">Notes</span>
+        <span class="badge badge-primary badge-pill">0</span>
+      </a>
+    </div> -->
+  </div>
+</div>
+
+<!-- Monaco code editor module. -->
+<script>var require = { paths: { 'vs': 'scripts/monaco/min/vs' } };</script>
+<script src="scripts/monaco/min/vs/loader.js"></script>
+<script src="scripts/monaco/min/vs/editor/editor.main.nls.js"></script>
+<script src="scripts/monaco/min/vs/editor/editor.main.js"></script>
+
+<!-- Eidolon modules. Loads the rest of the files. -->
+<script src="scripts/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,196 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font: 14px Helvetica, Arial;
+    overflow: hidden;
+}
+
+#EidolonCanvas {
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+}
+
+/* Sidebars. */
+#left, #right {
+    position: absolute;
+    top: 0px;
+    height: 100% !important; /* Resizing overrides the value. */
+    min-width: 5px;
+}
+
+#left {
+    left: 0px;
+    width: 20%;
+}
+
+#right {
+    right: 0px;
+    width: 25%;
+}
+
+/* Chat and Scripts containers. */
+#left > div, #right > div {
+    box-sizing: border-box;
+    position: absolute;
+    top: 1%;
+    left: 2%;
+    height: 98%;
+    width: 96%;
+}
+
+/*  Rounded borders to all elements in bars,
+    and of chat, and remove default spacings. */
+#chat,
+#chat *,
+#scripts {
+    border-radius: 3.14px;
+    overflow: hidden;
+}
+#chat form, input, textarea, button {
+    padding: 0;
+    margin: 0;
+}
+
+/* Chatbox. */
+#chat {
+    font-size: 12px;
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid;
+    border-color: #eaeaea; /* Compatibility. */
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Chat messages. */
+#chat > div:first-child {
+    height: calc(100% - 2em);
+    padding: 0.5em;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Chat scroll bar. */
+#chat > div:first-child::-webkit-scrollbar-track,
+#files::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+#chat > div:first-child::-webkit-scrollbar,
+#files::-webkit-scrollbar {
+    width: 6px;
+    background-color: #f5f5f5;
+}
+
+#chat > div:first-child::-webkit-scrollbar-thumb,
+#files::-webkit-scrollbar-thumb {
+    background-color: #f5f5f5;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+/* A chat message row. */
+#chat > div:first-child > div > div {
+    padding: 0.5em;
+}
+
+/* A chat message column. */
+#chat > div:first-child > div > div > div {
+    padding: 0.5em 1em;
+}
+
+#chat > div:first-child > div > div:nth-child(odd) > div {
+    background-color: rgba(0, 0, 0, 0.01);
+}
+
+#chat > div:first-child > div > div:nth-child(even) > div {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+#chat > div:first-child > div > div > div.myMessage {
+    text-align: right;
+}
+
+/* Chat input. */
+#chat > div:last-child {
+    position: absolute;
+    bottom: 0.25em;
+    left: 2%;
+    width: 96%;
+    height: 2em;
+    overflow: hidden;
+}
+
+#chat > div:last-child > form {
+    width: 100%;
+    height:  100%;
+}
+
+#chat > div:last-child > form > * {
+    border: 1px solid lightgrey;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+#chat > div:last-child > form > textarea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    resize: none;
+    width: calc(100% - 50px);
+    height: 100%;
+    font-size: 1.25em;
+}
+
+#chat > div:last-child > form > button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 100%;
+    text-align: center;
+}
+
+.monaco-editor,
+.monaco-editor-background,
+.monaco-editor .margin,
+.monaco-editor .inputarea.ime-input {
+    background-color: transparent !important;
+}
+.monaco-editor {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Individual script. */
+.script {
+    width: 100%;
+    height: 100%;
+}
+
+/* Files tree. */
+#files {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100% !important; /* Resizing overrides the value. */
+    height: 50%;
+    min-height: 3em;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.9);
+    z-index: 2;
+    padding: 0.5em 1em;
+    overflow-y: auto;
+    overflow-y: overlay; /* Experimental! */
+    overflow-x: hidden;
+    user-select: none;
+}
+
+#files a.list-group-item.active {
+    color: inherit;
+    background-color: rgba(0, 123, 255, 0.25);
+    border-color: transparent;
+}
