@@ -19,6 +19,7 @@ _Get it_
 - __Fetch__ it to your computer.
 - Open a console in the top directory and run:
 - `npm install`
+- This will install BabylonJS, Monaco-Editor, and more. See __package.json__ for more modules and my ESLint rules.
 
 _Run it_
 - To have the server reload automatically after changes saved, with:
