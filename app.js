@@ -17,6 +17,8 @@ var app = express()
 var http = require('http').Server(app)
 var io = require('socket.io')(http)
 
+app.use('/monaco', express.static(path.join(__dirname, 'node_modules', 'monaco-editor')))
+
 app.use(express.static(public))
 
 app.get('/*', function(req, res){

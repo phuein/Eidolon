@@ -8,18 +8,15 @@
     "babylonjs": "^3.2.0",
     "cannon": "^0.6.2",
     "express": "^4.16.3",
+    "monaco-editor": "^0.14.3",
     "socket.io": "^2.1.1"
   },
   "devDependencies": {
     "@types/babylonjs": "^2.4.1",
     "@types/jquery": "^3.3.5",
-    "@types/playcanvas": "^0.221.4",
     "@types/socket.io": "^1.4.36",
     "@types/three": "^0.92.14"
   },
-  "eslintIgnore": [
-    "public/scripts/monaco"
-  ],
   "eslintConfig": {
     "env": {
       "browser": true,
